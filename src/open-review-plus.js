@@ -1,4 +1,4 @@
-console.log('loaded js!');
+// jxmorris12 9/28/19
 
 // Tiny jquery extension
 // thanks /u/Magnar https://stackoverflow.com/questions/920236/how-can-i-detect-if-a-selector-returns-null
@@ -29,7 +29,6 @@ var drawnGraphs = false;
 var scrollToOffset = function(offset) {
   /* Scrolls to an element its offset. */
   let scrollTo = offset + 'px';
-  console.log('scrolling to ', scrollTo);
   $("html, body").animate({ scrollTop: offset });
 }
 
@@ -37,8 +36,6 @@ var scrollToReview = function(reviewNumber) {
   /* Scrolls to a review from its index in the list. */
   let reviewBoxes = $('.note_content_field:contains(Rating: )').closest('.note_with_children');
   let reviewBox = reviewBoxes[reviewNumber];
-  console.log('rb:', reviewBox);
-  console.log('rb pos:', $(reviewBox).position());
   scrollToOffset($(reviewBox).position().top);
 }
 
@@ -102,7 +99,7 @@ var loadReviews = function() {
   // color final decision
   if(finalDecision == 'Reject') {
     $('#decision-text').css('color', 'maroon');
-  } else if(finalDecision == 'Accept') {
+  } else if(finalDecision == 'Accept' || finalDecision == 'Accept (Oral)') {
     $('#decision-text').css('color', 'green');
   }
 
@@ -125,7 +122,6 @@ var loadReviews = function() {
     // Add box for text and bar.
     reviewContainer.append(reviewBox);
     // Set bar color.
-    console.log('setting color ||', '#review-bar-' + i, reviewColors[ratingInts[i]]);
     $('#review-bar-' + i).css('background', reviewColors[parseInt(ratingInts[i])]);
     // Add scrollTo.
     reviewBox.click(() => scrollToReview(i));
@@ -152,10 +148,8 @@ var loadReviews = function() {
 
   // Some final padding.
   graphContainer.before('<br>');
-  graphContainer.after('<br><hr>');
+  graphContainer.after('<br><hr style="height:2px">');
 }
 
-console.log('loaded, loading reviews');
 loadReviews();
-console.log('done :) ');
 $(window).on('load', loadReviews, false);
