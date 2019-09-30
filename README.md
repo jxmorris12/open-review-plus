@@ -1,12 +1,9 @@
 # open review plus
 
 
+A Chrome Extension to enhance browsing on OpenReview.net.
 
-TODO add a license
-
-
-
-
+![alt text](screenshot.png "OpenReview plus screenshot")
 
 
 forked from extstyler https://github.com/tomhodgins/extstyler
